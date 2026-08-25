@@ -1,0 +1,135 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMhMK0VyVF5wlXZ7Dl4honv",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/deepthi2236/ds-lab-/blob/main/deletion_py.singlyll\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Node:\n",
+        "  def __init__(self, data=None):\n",
+        "    self.data = data\n",
+        "    self.next = None\n",
+        "\n",
+        "class SLinkedList:\n",
+        "  def __init__(self):\n",
+        "    self.head = None\n",
+        "\n",
+        "  def at_beginning(self, data_in):\n",
+        "    new_node = Node(data_in)\n",
+        "    new_node.next = self.head\n",
+        "    self.head = new_node\n",
+        "\n",
+        "  def remove_node(self, remove_key):\n",
+        "    head_val = self.head\n",
+        "\n",
+        "    # Case 1: Head node itself holds the key to be deleted\n",
+        "    if head_val is not None:\n",
+        "      if head_val.data == remove_key:\n",
+        "        self.head = head_val.next\n",
+        "        head_val = None # Free memory (Python's garbage collector handles this, but good to set to None)\n",
+        "        return\n",
+        "\n",
+        "    # Search for the key to be deleted, keep track of the previous node\n",
+        "    prev = None\n",
+        "    while head_val is not None:\n",
+        "      if head_val.data == remove_key:\n",
+        "        break # Found the node to be deleted\n",
+        "      prev = head_val\n",
+        "      head_val = head_val.next\n",
+        "\n",
+        "    # If key was not present in linked list\n",
+        "    if head_val is None:\n",
+        "      return\n",
+        "\n",
+        "    # Unlink the node from the linked list\n",
+        "    if prev is not None:\n",
+        "        prev.next = head_val.next\n",
+        "    head_val = None\n",
+        "\n",
+        "  def print_list(self):\n",
+        "    print_val = self.head\n",
+        "    while print_val:\n",
+        "      print(print_val.data)\n",
+        "      print_val = print_val.next\n",
+        "\n",
+        "# Main execution block\n",
+        "if __name__ == '__main__':\n",
+        "  llist = SLinkedList()\n",
+        "  llist.at_beginning(\"mon\")\n",
+        "  llist.at_beginning(\"tue\")\n",
+        "  llist.at_beginning(\"wed\")\n",
+        "  llist.at_beginning(\"thu\")\n",
+        "  llist.print_list()\n",
+        "\n",
+        "  print(\"\\nRemoving 'tue':\")\n",
+        "  llist.remove_node(\"tue\")\n",
+        "  llist.print_list()\n",
+        "\n",
+        "  print(\"\\nRemoving 'thu' (head):\")\n",
+        "  llist.remove_node(\"thu\")\n",
+        "  llist.print_list()\n",
+        "\n",
+        "  print(\"\\nRemoving 'nonexistent':\")\n",
+        "  llist.remove_node(\"nonexistent\")\n",
+        "  llist.print_list()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "uchUDLzcDtHs",
+        "outputId": "a30ae8b9-592f-4a97-8837-caf09cd3da2c"
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "thu\n",
+            "wed\n",
+            "tue\n",
+            "mon\n",
+            "\n",
+            "Removing 'tue':\n",
+            "thu\n",
+            "wed\n",
+            "mon\n",
+            "\n",
+            "Removing 'thu' (head):\n",
+            "wed\n",
+            "mon\n",
+            "\n",
+            "Removing 'nonexistent':\n",
+            "wed\n",
+            "mon\n"
+          ]
+        }
+      ]
+    }
+  ]
+}

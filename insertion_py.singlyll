@@ -1,0 +1,96 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNhyfEulbenlcAXQ8WYtjb5",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/deepthi2236/ds-lab-/blob/main/insertion_py.singlyll\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Node:\n",
+        "  def __init__(self, data):\n",
+        "    self.data = data # Corrected to use 'data' parameter\n",
+        "    self.next = None\n",
+        "\n",
+        "class SLinkedList:\n",
+        "  def __init__(self):\n",
+        "    self.head = None # Standard attribute name 'head'\n",
+        "\n",
+        "  def print_list(self):\n",
+        "    print_val = self.head # Corrected attribute name 'head'\n",
+        "    while print_val is not None: # Corrected 'none' to 'None' and added colon\n",
+        "      print(print_val.data) # Corrected attribute name 'dataval' to 'data'\n",
+        "      print_val = print_val.next # Corrected attribute name 'nextval' to 'next'\n",
+        "\n",
+        "  def at_beginning(self, new_data): # Corrected parameter and method name\n",
+        "    new_node = Node(new_data)\n",
+        "    new_node.next = self.head # Corrected attribute name and assignment\n",
+        "    self.head = new_node\n",
+        "\n",
+        "# Main execution block\n",
+        "if __name__ == '__main__':\n",
+        "  llist = SLinkedList() # Changed variable name from 'list' to 'llist' to avoid shadowing built-in 'list'\n",
+        "\n",
+        "  # Initialize the linked list with 'mon', 'tue', 'wed' nodes\n",
+        "  # In this structure, we should append or push, not assign directly to head.val\n",
+        "  # Given 'at_beginning' is defined, let's use it.\n",
+        "\n",
+        "  llist.at_beginning(\"wed\") # Add \"wed\" first, then \"tue\", then \"mon\" so \"mon\" is at the head\n",
+        "  llist.at_beginning(\"tue\")\n",
+        "  llist.at_beginning(\"mon\")\n",
+        "\n",
+        "  # The original code had: list.head.val=node(mon); e2=node(tue); e3=node(wed); list.headval.nextval=e2; e2.nextval=e3;\n",
+        "  # This is an incorrect way to build a linked list with the defined methods.\n",
+        "  # The 'at_beginning' method is already available.\n",
+        "\n",
+        "  llist.at_beginning(\"sum\") # Using at_beginning for \"sum\"\n",
+        "\n",
+        "  print(\"Created linked list:\")\n",
+        "  llist.print_list() # Corrected method name\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "AthYDEfjFk80",
+        "outputId": "0dad1e9e-2ea9-4e5e-b448-d1639d9d534b"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Created linked list:\n",
+            "sum\n",
+            "mon\n",
+            "tue\n",
+            "wed\n"
+          ]
+        }
+      ]
+    }
+  ]
+}

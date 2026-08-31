@@ -1,0 +1,149 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOx5WOXUbRdC3xKl/IrOupX",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/deepthi2236/ds-lab-/blob/main/insertion.circular%20ll\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "and"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 106
+        },
+        "id": "uJH8egpTRcRl",
+        "outputId": "41f91261-d1c3-486e-a4db-5709c543399f"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "SyntaxError",
+          "evalue": "invalid syntax (192420000.py, line 1)",
+          "traceback": [
+            "\u001b[0;36m  File \u001b[0;32m\"/tmp/ipykernel_1261/192420000.py\"\u001b[0;36m, line \u001b[0;32m1\u001b[0m\n\u001b[0;31m    and\u001b[0m\n\u001b[0m    ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m invalid syntax\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Node:\n",
+        "    def __init__(self, data):\n",
+        "        self.data = data\n",
+        "        self.next = None\n",
+        "\n",
+        "class CircularLinkedList:\n",
+        "    def __init__(self):\n",
+        "        self.last = None\n",
+        "\n",
+        "    def addToEmpty(self, data):\n",
+        "        if (self.last != None):\n",
+        "            return self.last\n",
+        "        temp = Node(data)\n",
+        "        self.last = temp\n",
+        "        self.last.next = self.last\n",
+        "        return self.last\n",
+        "\n",
+        "    def addBegin(self, data):\n",
+        "        if (self.last == None):\n",
+        "            return self.addToEmpty(data)\n",
+        "        temp = Node(data)\n",
+        "        temp.next = self.last.next\n",
+        "        self.last.next = temp\n",
+        "        return self.last\n",
+        "\n",
+        "    def addEnd(self, data):\n",
+        "        if (self.last == None):\n",
+        "            return self.addToEmpty(data)\n",
+        "        temp = Node(data)\n",
+        "        temp.next = self.last.next\n",
+        "        self.last.next = temp\n",
+        "        self.last = temp\n",
+        "        return self.last\n",
+        "\n",
+        "    def addAfter(self, data, item):\n",
+        "        if (self.last == None):\n",
+        "            return None\n",
+        "        temp = Node(data)\n",
+        "        p = self.last.next\n",
+        "        while p:\n",
+        "            if (p.data == item):\n",
+        "                temp.next = p.next\n",
+        "                p.next = temp\n",
+        "                if (p == self.last):\n",
+        "                    self.last = temp\n",
+        "                return self.last\n",
+        "            p = p.next\n",
+        "            if (p == self.last.next):\n",
+        "                print(item, \"not present in the list\")\n",
+        "                break\n",
+        "        return self.last # Return last even if item not found\n",
+        "\n",
+        "    def traverse(self):\n",
+        "        if (self.last == None):\n",
+        "            print(\"List is empty\")\n",
+        "            return\n",
+        "        temp = self.last.next\n",
+        "        while True:\n",
+        "            print(temp.data, end = \" \")\n",
+        "            temp = temp.next\n",
+        "            if temp == self.last.next:\n",
+        "                break\n",
+        "\n",
+        "if __name__ == '__main__':\n",
+        "    llist = CircularLinkedList()\n",
+        "    last = llist.addToEmpty(6)\n",
+        "    last = llist.addBegin(4)\n",
+        "    last = llist.addBegin(2)\n",
+        "    last = llist.addEnd(8)\n",
+        "    last = llist.addEnd(12)\n",
+        "    last = llist.addAfter(10,8)\n",
+        "    llist.traverse()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "kpcaJ-eLRa5G",
+        "outputId": "6518e1c7-0ccb-46c4-92b9-c0e426cc6b11"
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "2 4 6 8 10 12 "
+          ]
+        }
+      ]
+    }
+  ]
+}

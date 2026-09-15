@@ -1,0 +1,110 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMXJOWwSn24GoY8COCNFTE+",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/deepthi2236/ds-lab-/blob/main/evaluate_postfix_py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Evaluate:\n",
+        "\n",
+        "\n",
+        "    def __init__(self, capacity):\n",
+        "        self.top = -1\n",
+        "        self.capacity = capacity\n",
+        "        # This array is used a stack\n",
+        "        self.array = []\n",
+        "\n",
+        "    def isEmpty(self):\n",
+        "\n",
+        "        return True if self.top == -1 else False\n",
+        "\n",
+        "\n",
+        "    def peek(self):\n",
+        "\n",
+        "        return self.array[-1]\n",
+        "\n",
+        "\n",
+        "    def pop(self):\n",
+        "\n",
+        "        if not self.isEmpty():\n",
+        "\n",
+        "            self.top -= 1\n",
+        "\n",
+        "            return self.array.pop()\n",
+        "\n",
+        "        else:\n",
+        "\n",
+        "            return \"$\"\n",
+        "\n",
+        "\n",
+        "\n",
+        "    def push(self, op):\n",
+        "\n",
+        "        self.top += 1\n",
+        "        self.array.append(op)\n",
+        "\n",
+        "\n",
+        "\n",
+        "    def evaluatePostfix(self, exp):\n",
+        "        for i in exp:\n",
+        "\n",
+        "            if i.isdigit():\n",
+        "\n",
+        "                self.push(i)\n",
+        "\n",
+        "            else:\n",
+        "\n",
+        "                val1 = self.pop()\n",
+        "                val2 = self.pop()\n",
+        "                self.push(str(eval(val2 + i + val1)))\n",
+        "\n",
+        "        return int(self.pop())\n",
+        "exp = \"231*+9-\"\n",
+        "obj = Evaluate(len(exp))\n",
+        "\n",
+        "print (\"postfix evaluation: %d\"%(obj.evaluatePostfix(exp)))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "PUbt9TOxIYAD",
+        "outputId": "4955db44-8eac-4b8d-eb43-2fb4d8c9a59a"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "postfix evaluation: -4\n"
+          ]
+        }
+      ]
+    }
+  ]
+}

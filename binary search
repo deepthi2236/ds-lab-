@@ -1,0 +1,83 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNRb30k89IX6s+UmLBg5TH0",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/deepthi2236/ds-lab-/blob/main/binary%20search\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def binarySearch(arr, l, r, x):\n",
+        "    # Check base case\n",
+        "    if r >= l:\n",
+        "        mid = l + (r - l) // 2  # Integer division for mid index\n",
+        "\n",
+        "        # If the element is present at the middle itself\n",
+        "        if arr[mid] == x:\n",
+        "            return mid\n",
+        "\n",
+        "        # If element is smaller than mid, then it can only be present in left subarray\n",
+        "        elif arr[mid] > x:\n",
+        "            return binarySearch(arr, l, mid - 1, x)\n",
+        "\n",
+        "        # Else the element can only be present in right subarray\n",
+        "        else:\n",
+        "            return binarySearch(arr, mid + 1, r, x)\n",
+        "\n",
+        "    else:\n",
+        "        # Element is not present in the array\n",
+        "        return -1\n",
+        "\n",
+        "\n",
+        "arr = [2, 3, 4, 10, 40]\n",
+        "x = 10\n",
+        "\n",
+        "result = binarySearch(arr, 0, len(arr) - 1, x)\n",
+        "\n",
+        "if result != -1:\n",
+        "    print(\"Element is present at index % d\" % result)\n",
+        "else:\n",
+        "    print(\"Element is not present in array\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1aBvnNrZoehH",
+        "outputId": "7120cb33-0293-48f3-9501-6c0ad4701ae1"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Element is present at index  3\n"
+          ]
+        }
+      ]
+    }
+  ]
+}

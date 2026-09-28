@@ -1,0 +1,72 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPq9fPBJSK6Xf4N5zeA4TEg",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/deepthi2236/ds-lab-/blob/main/insertion%20sort\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def insertionSort(arr):\n",
+        "    for i in range(1, len(arr)):\n",
+        "        key = arr[i]\n",
+        "        j = i - 1\n",
+        "        while j >= 0 and key < arr[j]:\n",
+        "            arr[j + 1] = arr[j]\n",
+        "            j -= 1\n",
+        "        arr[j + 1] = key\n",
+        "\n",
+        "arr = [12, 11, 13, 5, 6]\n",
+        "insertionSort(arr)\n",
+        "\n",
+        "print(\"Sorted array is:\")\n",
+        "for i in range(len(arr)):\n",
+        "    print(\"%d\" % arr[i])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Tlh40oGQpuuw",
+        "outputId": "b8847fe3-6f0b-498c-d762-88bfd80d905e"
+      },
+      "execution_count": 18,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Sorted array is:\n",
+            "5\n",
+            "6\n",
+            "11\n",
+            "12\n",
+            "13\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
